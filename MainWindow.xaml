@@ -1,0 +1,575 @@
+﻿<Window x:Class="OliAcessoRemoto.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OliAcessoRemoto"
+        mc:Ignorable="d"
+        Title="OliAcesso Remoto - Cliente"
+        Height="600"
+        Width="900"
+        MinHeight="500"
+        MinWidth="700"
+        Background="{StaticResource BackgroundBrush}"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="{StaticResource SurfaceBrush}"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource BorderBrush}"
+                Padding="24,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo e Título -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Ellipse Width="32" Height="32"
+                             Fill="{StaticResource PrimaryBrush}"
+                             Margin="0,0,12,0"/>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="OliAcesso Remoto"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                        <TextBlock Text="Cliente"
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Status da Conexão -->
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <Ellipse x:Name="StatusIndicator"
+                             Width="8"
+                             Height="8"
+                             Fill="{StaticResource ErrorBrush}"
+                             Margin="0,0,8,0"/>
+                    <TextBlock x:Name="StatusText"
+                               Text="Desconectado"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Conteúdo Principal -->
+        <TabControl Grid.Row="1"
+                    x:Name="MainTabControl"
+                    Style="{StaticResource ModernTabControl}"
+                    Margin="24,16,24,0">
+
+            <!-- Aba Conectar -->
+            <TabItem Header="Conectar a outro computador"
+                     Style="{StaticResource ModernTabItem}">
+                <Grid Margin="0,24,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Título da seção -->
+                    <TextBlock Grid.Row="0"
+                               Text="Conectar-se a outro computador"
+                               FontSize="20"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               Margin="0,0,0,8"/>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Digite o ID do computador remoto para estabelecer uma conexão"
+                               FontSize="14"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               Margin="0,0,0,24"/>
+
+                    <!-- Formulário de conexão -->
+                    <Border Grid.Row="2"
+                            Background="{StaticResource SurfaceBrush}"
+                            CornerRadius="8"
+                            Padding="24"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource BorderBrush}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Text="ID do Computador Remoto"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{StaticResource TextPrimaryBrush}"
+                                       Margin="0,0,0,8"/>
+
+                            <TextBox Grid.Row="1"
+                                     x:Name="RemoteIdTextBox"
+                                     Style="{StaticResource ModernTextBox}"
+                                     FontSize="16"
+                                     FontFamily="Consolas"
+                                     Text=""
+                                     Margin="0,0,0,16"/>
+
+                            <CheckBox Grid.Row="2"
+                                      x:Name="SaveConnectionCheckBox"
+                                      Content="Salvar esta conexão para acesso rápido"
+                                      FontSize="12"
+                                      Foreground="{StaticResource TextSecondaryBrush}"
+                                      Margin="0,0,0,24"/>
+
+                            <StackPanel Grid.Row="3"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+                                <Button Content="Conectar"
+                                        Style="{StaticResource ModernButton}"
+                                        x:Name="ConnectButton"
+                                        MinWidth="120"
+                                        Click="ConnectButton_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Conexões Salvas -->
+                    <Border Grid.Row="3"
+                            Background="{StaticResource SurfaceBrush}"
+                            CornerRadius="8"
+                            Padding="24"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource BorderBrush}"
+                            Margin="0,24,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Text="Conexões Recentes"
+                                       FontSize="16"
+                                       FontWeight="Medium"
+                                       Foreground="{StaticResource TextPrimaryBrush}"
+                                       Margin="0,0,0,16"/>
+
+                            <ListBox Grid.Row="1"
+                                     x:Name="RecentConnectionsListBox"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="Transparent"
+                                                Padding="12,8"
+                                                Margin="0,2"
+                                                CornerRadius="4">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Ellipse Grid.Column="0"
+                                                         Width="24"
+                                                         Height="24"
+                                                         Fill="{StaticResource PrimaryBrush}"
+                                                         Margin="0,0,12,0"/>
+
+                                                <StackPanel Grid.Column="1">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontWeight="Medium"
+                                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                                    <TextBlock Text="{Binding Id}"
+                                                               FontSize="12"
+                                                               FontFamily="Consolas"
+                                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                                                </StackPanel>
+
+                                                <Button Grid.Column="2"
+                                                        Content="Conectar"
+                                                        Style="{StaticResource SecondaryButton}"
+                                                        Padding="12,4"
+                                                        FontSize="12"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Aba Permitir Acesso -->
+            <TabItem Header="Permitir acesso remoto"
+                     Style="{StaticResource ModernTabItem}">
+                <Grid Margin="0,24,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Título da seção -->
+                    <TextBlock Grid.Row="0"
+                               Text="Permitir acesso a este computador"
+                               FontSize="20"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               Margin="0,0,0,8"/>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Compartilhe seu ID para permitir que outros se conectem a este computador"
+                               FontSize="14"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               Margin="0,0,0,24"/>
+
+                    <!-- ID Local -->
+                    <Border Grid.Row="2"
+                            Background="{StaticResource SurfaceBrush}"
+                            CornerRadius="8"
+                            Padding="24"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource BorderBrush}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Text="Seu ID"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{StaticResource TextPrimaryBrush}"
+                                       Margin="0,0,0,8"/>
+
+                            <Border Grid.Row="1"
+                                    Background="#F8F9FA"
+                                    CornerRadius="4"
+                                    Padding="16,12"
+                                    BorderThickness="1"
+                                    BorderBrush="{StaticResource BorderBrush}"
+                                    Margin="0,0,0,16">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0"
+                                               x:Name="LocalIdTextBlock"
+                                               Text="123 456 789"
+                                               FontSize="24"
+                                               FontFamily="Consolas"
+                                               FontWeight="Bold"
+                                               Foreground="{StaticResource PrimaryBrush}"
+                                               VerticalAlignment="Center"/>
+
+                                    <Button Grid.Column="1"
+                                            Content="📋 Copiar"
+                                            Style="{StaticResource SecondaryButton}"
+                                            x:Name="CopyIdButton"
+                                            Click="CopyIdButton_Click"
+                                            Padding="12,8"/>
+                                </Grid>
+                            </Border>
+
+                            <TextBlock Grid.Row="2"
+                                       Text="Status do Servidor"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{StaticResource TextPrimaryBrush}"
+                                       Margin="0,0,0,8"/>
+
+                            <StackPanel Grid.Row="3"
+                                        Orientation="Horizontal">
+                                <Ellipse x:Name="ServerStatusIndicator"
+                                         Width="12"
+                                         Height="12"
+                                         Fill="{StaticResource ErrorBrush}"
+                                         Margin="0,0,8,0"
+                                         VerticalAlignment="Center"/>
+                                <TextBlock x:Name="ServerStatusText"
+                                           Text="Servidor parado"
+                                           FontSize="14"
+                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,16,0"/>
+                                <Button Content="Iniciar Servidor"
+                                        Style="{StaticResource ModernButton}"
+                                        x:Name="StartServerButton"
+                                        Click="StartServerButton_Click"
+                                        Padding="16,6"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Configurações de Acesso -->
+                    <Border Grid.Row="3"
+                            Background="{StaticResource SurfaceBrush}"
+                            CornerRadius="8"
+                            Padding="24"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource BorderBrush}"
+                            Margin="0,24,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Text="Configurações de Segurança"
+                                       FontSize="16"
+                                       FontWeight="Medium"
+                                       Foreground="{StaticResource TextPrimaryBrush}"
+                                       Margin="0,0,0,16"/>
+
+                            <CheckBox Grid.Row="1"
+                                      x:Name="RequirePasswordCheckBox"
+                                      Content="Exigir senha para conexões"
+                                      FontSize="14"
+                                      Margin="0,0,0,12"/>
+
+                            <StackPanel Grid.Row="2"
+                                        Orientation="Horizontal"
+                                        Margin="0,0,0,12">
+                                <TextBlock Text="Senha:"
+                                           FontSize="14"
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,12,0"
+                                           Width="60"/>
+                                <TextBox x:Name="AccessPasswordTextBox"
+                                         Style="{StaticResource ModernTextBox}"
+                                         Width="200"
+                                         IsEnabled="{Binding IsChecked, ElementName=RequirePasswordCheckBox}"/>
+                            </StackPanel>
+
+                            <CheckBox Grid.Row="3"
+                                      x:Name="AutoAcceptCheckBox"
+                                      Content="Aceitar conexões automaticamente (não recomendado)"
+                                      FontSize="14"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Aba Configurações -->
+            <TabItem Header="Configurações"
+                     Style="{StaticResource ModernTabItem}">
+                <ScrollViewer Margin="0,24,0,0" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <!-- Configurações Gerais -->
+                        <Border Background="{StaticResource SurfaceBrush}"
+                                CornerRadius="8"
+                                Padding="24"
+                                BorderThickness="1"
+                                BorderBrush="{StaticResource BorderBrush}"
+                                Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           Text="Configurações Gerais"
+                                           FontSize="16"
+                                           FontWeight="Medium"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           Margin="0,0,0,16"/>
+
+                                <CheckBox Grid.Row="1"
+                                          x:Name="StartWithWindowsCheckBox"
+                                          Content="Iniciar com o Windows"
+                                          FontSize="14"
+                                          Margin="0,0,0,12"/>
+
+                                <CheckBox Grid.Row="2"
+                                          x:Name="MinimizeToTrayCheckBox"
+                                          Content="Minimizar para a bandeja do sistema"
+                                          FontSize="14"
+                                          Margin="0,0,0,12"/>
+
+                                <CheckBox Grid.Row="3"
+                                          x:Name="ShowNotificationsCheckBox"
+                                          Content="Mostrar notificações"
+                                          FontSize="14"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Configurações de Rede -->
+                        <Border Background="{StaticResource SurfaceBrush}"
+                                CornerRadius="8"
+                                Padding="24"
+                                BorderThickness="1"
+                                BorderBrush="{StaticResource BorderBrush}"
+                                Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           Text="Configurações de Rede"
+                                           FontSize="16"
+                                           FontWeight="Medium"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           Margin="0,0,0,16"/>
+
+                                <StackPanel Grid.Row="1"
+                                            Orientation="Horizontal"
+                                            Margin="0,0,0,12">
+                                    <TextBlock Text="Servidor:"
+                                               FontSize="14"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,12,0"
+                                               Width="80"/>
+                                    <TextBox x:Name="ServerAddressTextBox"
+                                             Style="{StaticResource ModernTextBox}"
+                                             Text="servidor.oliacesso.com"
+                                             Width="250"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2"
+                                            Orientation="Horizontal">
+                                    <TextBlock Text="Porta:"
+                                               FontSize="14"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,12,0"
+                                               Width="80"/>
+                                    <TextBox x:Name="ServerPortTextBox"
+                                             Style="{StaticResource ModernTextBox}"
+                                             Text="7070"
+                                             Width="100"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <!-- Configurações de Qualidade -->
+                        <Border Background="{StaticResource SurfaceBrush}"
+                                CornerRadius="8"
+                                Padding="24"
+                                BorderThickness="1"
+                                BorderBrush="{StaticResource BorderBrush}"
+                                Margin="0,0,0,16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           Text="Qualidade da Conexão"
+                                           FontSize="16"
+                                           FontWeight="Medium"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           Margin="0,0,0,16"/>
+
+                                <StackPanel Grid.Row="1"
+                                            Orientation="Horizontal"
+                                            Margin="0,0,0,12">
+                                    <TextBlock Text="Qualidade:"
+                                               FontSize="14"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,12,0"
+                                               Width="80"/>
+                                    <ComboBox x:Name="QualityComboBox"
+                                              Width="200"
+                                              SelectedIndex="1">
+                                        <ComboBoxItem Content="Baixa (mais rápida)"/>
+                                        <ComboBoxItem Content="Média (balanceada)"/>
+                                        <ComboBoxItem Content="Alta (melhor qualidade)"/>
+                                    </ComboBox>
+                                </StackPanel>
+
+                                <CheckBox Grid.Row="2"
+                                          x:Name="AdaptiveQualityCheckBox"
+                                          Content="Ajustar qualidade automaticamente baseado na velocidade da conexão"
+                                          FontSize="14"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Botões de Ação -->
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    Margin="0,16,0,0">
+                            <Button Content="Restaurar Padrões"
+                                    Style="{StaticResource SecondaryButton}"
+                                    x:Name="RestoreDefaultsButton"
+                                    Click="RestoreDefaultsButton_Click"
+                                    Margin="0,0,12,0"/>
+                            <Button Content="Salvar Configurações"
+                                    Style="{StaticResource ModernButton}"
+                                    x:Name="SaveSettingsButton"
+                                    Click="SaveSettingsButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <!-- Rodapé -->
+        <Border Grid.Row="2"
+                Background="{StaticResource SurfaceBrush}"
+                BorderThickness="0,1,0,0"
+                BorderBrush="{StaticResource BorderBrush}"
+                Padding="24,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           x:Name="FooterStatusText"
+                           Text="Pronto"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal">
+                    <TextBlock Text="Versão 1.0.0"
+                               FontSize="12"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,16,0"/>
+                    <Button Content="Sobre"
+                            Style="{StaticResource SecondaryButton}"
+                            x:Name="AboutButton"
+                            Click="AboutButton_Click"
+                            Padding="8,4"
+                            FontSize="12"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
