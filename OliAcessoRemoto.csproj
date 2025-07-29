@@ -33,6 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include="OnliDeskWrapper.csproj" />
       <Content Include="TestOnliDesk.csproj" />
       <Content Include="TestSimples\TestSimples.csproj" />
     </ItemGroup>

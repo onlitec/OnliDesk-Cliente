@@ -1,0 +1,97 @@
+﻿╔══════════════════════════════════════════════════════════════════════════════╗
+║                                  OnliDesk                                   ║
+║                            Acesso Remoto Seguro                             ║
+║                              © 2024 OnliTec                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+🚀 EXECUTÁVEL ÚNICO - SEM NECESSIDADE DE .BAT
+═══════════════════════════════════════════════════════════════════════════════
+
+⚡ MÉTODO SUPER SIMPLES:
+1. Execute OnliDesk.exe (clique duplo)
+2. O programa verificará automaticamente se o .NET está instalado
+3. Se não estiver, abrirá a página de download automaticamente
+4. Após instalação do .NET, execute OnliDesk.exe novamente
+5. O OnliDesk será iniciado automaticamente
+
+📋 ARQUIVOS INCLUÍDOS:
+• OnliDesk.exe - EXECUTÁVEL PRINCIPAL (EXECUTE ESTE ARQUIVO)
+• OliAcessoRemoto.exe - Aplicação OnliDesk (usado internamente)
+• Arquivos de suporte (.dll, .json) - Necessários para funcionamento
+• COMO-USAR.txt - Este arquivo de instruções
+
+🔧 REQUISITOS DO SISTEMA:
+• Windows 10/11 (64-bit)
+• .NET 8 Desktop Runtime (instalado automaticamente se necessário)
+• Conexão com internet (para download do .NET se necessário)
+
+✨ FUNCIONALIDADES DO EXECUTÁVEL:
+• ✅ Verificação automática do .NET 8 Desktop Runtime
+• ✅ Abertura automática da página de download se necessário
+• ✅ Interface gráfica amigável com mensagens claras
+• ✅ Execução automática do OnliDesk após verificação
+• ✅ Múltiplas opções de execução (dotnet run ou executável)
+• ✅ Tratamento robusto de erros
+
+🌐 FUNCIONALIDADES DO ONLIDESK:
+• ✅ Interface moderna e intuitiva
+• ✅ Conexão segura com servidor OnliDesk (172.20.120.40:7070)
+• ✅ Autenticação JWT
+• ✅ Validação de IDs no formato XXX XXX XXX
+• ✅ Sistema de configurações avançadas
+• ✅ Gestão de conexões recentes
+• ✅ Modo offline funcional
+• ✅ Português brasileiro com acentuação correta
+
+🆘 SOLUÇÃO DE PROBLEMAS:
+
+❓ "OnliDesk não abre"
+   → Execute OnliDesk.exe como administrador
+   → Verifique se o antivírus não está bloqueando
+   → Certifique-se de que todos os arquivos estão na mesma pasta
+
+❓ "Mensagem sobre .NET"
+   → Clique em "Sim" para abrir a página de download
+   → Baixe ".NET Desktop Runtime 8.0" para Windows x64
+   → Execute o instalador baixado
+   → Reinicie o OnliDesk.exe após a instalação
+
+❓ "Não conecta ao servidor"
+   → Verifique conexão com internet
+   → Confirme se o servidor 172.20.120.40:7070 está acessível
+   → Use modo offline se necessário
+
+❓ "Antivírus bloqueia"
+   → Adicione exceção para a pasta do OnliDesk
+   → Marque OnliDesk.exe como confiável
+   → Use Windows Defender se possível
+
+🔗 LINKS ÚTEIS:
+• Download .NET 8: https://dotnet.microsoft.com/download/dotnet/8.0
+• Procure por: ".NET Desktop Runtime 8.0" para Windows x64
+
+💡 DICAS IMPORTANTES:
+• SEMPRE execute OnliDesk.exe, é o arquivo principal
+• Mantenha todos os arquivos na mesma pasta
+• Para desinstalar, simplesmente delete a pasta
+• Crie um atalho do OnliDesk.exe na área de trabalho para facilitar o acesso
+• Não precisa mais de arquivos .bat - OnliDesk.exe faz tudo automaticamente
+
+🎯 VANTAGENS DESTA VERSÃO:
+• ✅ Executável único - sem necessidade de .bat
+• ✅ Interface gráfica amigável
+• ✅ Verificação automática de dependências
+• ✅ Download automático do .NET se necessário
+• ✅ Múltiplas opções de execução
+• ✅ Tratamento robusto de erros
+• ✅ Tamanho pequeno (apenas 300KB total)
+
+🔄 VERSÃO:
+• Versão atual: 1.1.0
+• Data: 29/07/2024
+• Executável único com verificação automática do .NET
+
+═══════════════════════════════════════════════════════════════════════════════
+OnliDesk v1.1.0 - Desenvolvido por OnliTec © 2024
+Executável único com verificação automática do .NET 8 Desktop Runtime
+═══════════════════════════════════════════════════════════════════════════════
