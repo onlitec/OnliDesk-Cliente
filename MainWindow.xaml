@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OliAcessoRemoto"
         mc:Ignorable="d"
-        Title="OliAcesso Remoto - Cliente"
+        Title="OnliDesk"
         Height="600"
         Width="900"
         MinHeight="500"
@@ -39,11 +39,11 @@
                              Fill="{StaticResource PrimaryBrush}"
                              Margin="0,0,12,0"/>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="OliAcesso Remoto"
+                        <TextBlock Text="OnliDesk"
                                    FontSize="18"
                                    FontWeight="Bold"
                                    Foreground="{StaticResource TextPrimaryBrush}"/>
-                        <TextBlock Text="Cliente"
+                        <TextBlock Text="Acesso Remoto"
                                    FontSize="12"
                                    Foreground="{StaticResource TextSecondaryBrush}"/>
                     </StackPanel>
@@ -92,7 +92,7 @@
                                Margin="0,0,0,8"/>
 
                     <TextBlock Grid.Row="1"
-                               Text="Digite o ID do computador remoto para estabelecer uma conexão"
+                               Text="Digite o ID do computador para estabelecer uma conexão"
                                FontSize="14"
                                Foreground="{StaticResource TextSecondaryBrush}"
                                Margin="0,0,0,24"/>
@@ -113,7 +113,7 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0"
-                                       Text="ID do Computador Remoto"
+                                       Text="ID do Computador"
                                        FontSize="14"
                                        FontWeight="Medium"
                                        Foreground="{StaticResource TextPrimaryBrush}"
@@ -217,7 +217,7 @@
             </TabItem>
 
             <!-- Aba Permitir Acesso -->
-            <TabItem Header="Permitir acesso remoto"
+            <TabItem Header="Permitir acesso"
                      Style="{StaticResource ModernTabItem}">
                 <Grid Margin="0,24,0,0">
                     <Grid.RowDefinitions>
@@ -453,7 +453,7 @@
                                                Width="80"/>
                                     <TextBox x:Name="ServerAddressTextBox"
                                              Style="{StaticResource ModernTextBox}"
-                                             Text="servidor.oliacesso.com"
+                                             Text="172.20.120.40"
                                              Width="250"/>
                                 </StackPanel>
 

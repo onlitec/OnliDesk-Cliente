@@ -1,4 +1,4 @@
-﻿# 🖥️ OnliDesk Cliente
+﻿# 🖥️ OnliDesk
 
 Cliente moderno de acesso remoto construído com .NET 8, WPF e SignalR para comunicação em tempo real com o servidor OnliDesk.
 

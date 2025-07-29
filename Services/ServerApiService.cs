@@ -23,7 +23,7 @@ public class ServerApiService : IDisposable
         };
         
         // Configurar headers padrão
-        _httpClient.DefaultRequestHeaders.Add("User-Agent", "OliAcesso-Cliente/1.0.0");
+        _httpClient.DefaultRequestHeaders.Add("User-Agent", "OnliDesk-Cliente/1.0.0");
     }
 
     /// <summary>

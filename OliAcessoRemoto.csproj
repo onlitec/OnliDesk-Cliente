@@ -8,9 +8,9 @@
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-        <AssemblyTitle>OliAcesso Remoto Cliente</AssemblyTitle>
-        <AssemblyProduct>OliAcesso Remoto</AssemblyProduct>
-        <AssemblyCompany>OliAcesso</AssemblyCompany>
+        <AssemblyTitle>OnliDesk Cliente</AssemblyTitle>
+        <AssemblyProduct>OnliDesk</AssemblyProduct>
+        <AssemblyCompany>OnliTec</AssemblyCompany>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <FileVersion>1.0.0.0</FileVersion>
     </PropertyGroup>

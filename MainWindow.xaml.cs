@@ -168,7 +168,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
         if (string.IsNullOrEmpty(remoteId))
         {
-            System.Windows.MessageBox.Show("Por favor, digite o ID do computador remoto.", "ID Necessário",
+            System.Windows.MessageBox.Show("Por favor, digite o ID do computador.", "ID Necessário",
                           MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
@@ -327,7 +327,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void AboutButton_Click(object sender, RoutedEventArgs e)
     {
-        System.Windows.MessageBox.Show("OliAcesso Remoto - Cliente\nVersão 1.0.0\n\nUm aplicativo de acesso remoto seguro e fácil de usar.\n\n© 2024 OliAcesso",
+        System.Windows.MessageBox.Show("OnliDesk\nVersão 1.0.0\n\nUm aplicativo de acesso remoto seguro e fácil de usar.\n\n© 2024 OnliTec",
                       "Sobre", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
