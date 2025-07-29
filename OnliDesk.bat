@@ -148,8 +148,14 @@ echo  🚀 Todos os requisitos atendidos!
 echo  📱 Iniciando OnliDesk...
 echo.
 
-REM Executar o OnliDesk
-start "" "OliAcessoRemoto.exe"
+REM Executar o OnliDesk usando dotnet run (mais confiável)
+if exist "OliAcessoRemoto.csproj" (
+    echo  🚀 Executando via dotnet run...
+    dotnet run --project OliAcessoRemoto.csproj
+) else (
+    echo  🚀 Executando executável...
+    start "" "OliAcessoRemoto.exe"
+)
 
 if %ERRORLEVEL% EQU 0 (
     echo  ✅ OnliDesk iniciado com sucesso!

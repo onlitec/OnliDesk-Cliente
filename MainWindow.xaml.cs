@@ -23,7 +23,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private bool _isConnected = false;
     private string _localId = "000 000 000";
     private string? _authToken;
-    private readonly ServerApiService? _serverApi;
+    private ServerApiService? _serverApi;
 
 
     public ObservableCollection<RecentConnection> RecentConnections { get; set; } = new();
@@ -34,19 +34,19 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         {
             InitializeComponent();
 
-            // Inicializar serviço de API com IP do servidor OnliDesk
-            _serverApi = new ServerApiService("172.20.120.40", 7070);
-
+            // Inicializar dados básicos
             InitializeData();
+
+            // Atualizar UI básica
             UpdateUI();
 
-            // Aguardar janela carregar antes de inicializar servidor
+            // Configurar evento de carregamento para inicialização do servidor
             this.Loaded += MainWindow_Loaded;
         }
         catch (Exception ex)
         {
-            System.Windows.MessageBox.Show($"Erro ao inicializar a aplicação: {ex.Message}\n\nDetalhes: {ex}",
-                          "Erro de Inicialização", MessageBoxButton.OK, MessageBoxImage.Error);
+            System.Windows.MessageBox.Show($"Erro ao inicializar OnliDesk: {ex.Message}",
+                          "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
@@ -54,15 +54,29 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         try
         {
-            // Mostrar mensagem de teste para verificar se WPF está funcionando
-            FooterStatusText.Text = "OnliDesk carregado com sucesso!";
+            // Inicializar serviço de API
+            _serverApi = new ServerApiService("172.20.120.40", 7070);
 
-            // Inicializar conexão com servidor após janela carregar (comentado para teste)
-            // await InitializeServerConnectionAsync();
+            // Mostrar status inicial
+            FooterStatusText.Text = "OnliDesk carregado - Pronto para conectar";
+
+            // Inicializar conexão com servidor (sem bloquear UI)
+            _ = Task.Run(async () => {
+                try
+                {
+                    await InitializeServerConnectionAsync();
+                }
+                catch (Exception ex)
+                {
+                    Dispatcher.Invoke(() => {
+                        FooterStatusText.Text = "Modo offline - Servidor não disponível";
+                    });
+                }
+            });
         }
         catch (Exception ex)
         {
-            System.Windows.MessageBox.Show($"Erro no MainWindow_Loaded: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            FooterStatusText.Text = "Erro na inicialização - Modo offline";
         }
     }
 

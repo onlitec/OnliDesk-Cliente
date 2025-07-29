@@ -32,4 +32,9 @@
       <ClCompile Include="OnliDeskLauncher.cpp" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="TestOnliDesk.csproj" />
+      <Content Include="TestSimples\TestSimples.csproj" />
+    </ItemGroup>
+
 </Project>

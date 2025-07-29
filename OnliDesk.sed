@@ -3,8 +3,8 @@ Class=IEXPRESS
 SEDVersion=3
 [Options]
 PackagePurpose=InstallApp
-ShowInstallProgramWindow=0
-HideExtractAnimation=1
+ShowInstallProgramWindow=1
+HideExtractAnimation=0
 UseLongFileName=1
 InsideCompressed=0
 CAB_FixedSize=0
@@ -18,16 +18,15 @@ FriendlyName=%FriendlyName%
 AppLaunched=%AppLaunched%
 PostInstallCmd=%PostInstallCmd%
 AdminQuietInstCmd=%AdminQuietInstCmd%
-FILE0="OnliDesk.bat"
+FILE0="OnliDeskLauncher.exe"
 FILE1="OliAcessoRemoto.exe"
 [Strings]
-InstallPrompt=
+InstallPrompt=Este programa instalará o OnliDesk em seu computador.
 DisplayLicense=
-FinishMessage=
-TargetName=C:\Users\alfreire\OliAcessoRemoto\OnliDesk.exe
-FriendlyName=OnliDesk Launcher
-AppLaunched=OnliDesk.bat
+FinishMessage=OnliDesk foi instalado com sucesso!
+TargetName=.\OnliDesk.exe
+FriendlyName=OnliDesk
+AppLaunched=OnliDeskLauncher.exe
 PostInstallCmd=<None>
-AdminQuietInstCmd=<None>
-FILE0="OnliDesk.bat"
-FILE1="OliAcessoRemoto.exe"
+AdminQuietInstCmd=
+
