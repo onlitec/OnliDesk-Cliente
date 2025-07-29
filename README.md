@@ -1,31 +1,33 @@
-﻿# 🖥️ OliAcesso Remoto - Servidor
+﻿# 🖥️ OnliDesk Cliente
 
-Servidor moderno de acesso remoto construído com .NET 9, ASP.NET Core e SignalR para comunicação em tempo real.
+Cliente moderno de acesso remoto construído com .NET 8, WPF e SignalR para comunicação em tempo real com o servidor OnliDesk.
+
+[![Build Status](https://github.com/onlitec/OnliDesk-Cliente/workflows/🚀%20Build%20e%20Release%20OnliDesk%20Cliente/badge.svg)](https://github.com/onlitec/OnliDesk-Cliente/actions)
+[![Release](https://img.shields.io/github/v/release/onlitec/OnliDesk-Cliente)](https://github.com/onlitec/OnliDesk-Cliente/releases)
+[![Downloads](https://img.shields.io/github/downloads/onlitec/OnliDesk-Cliente/total)](https://github.com/onlitec/OnliDesk-Cliente/releases)
+[![License](https://img.shields.io/github/license/onlitec/OnliDesk-Cliente)](LICENSE)
 
 ## 🚀 Características
 
 ### **Tecnologias Modernas**
-- **.NET 9** - Framework mais recente
-- **ASP.NET Core** - Web API moderna
-- **SignalR** - Comunicação em tempo real
-- **Entity Framework Core** - ORM moderno
+- **.NET 8 LTS** - Framework estável e confiável
+- **WPF** - Interface moderna e responsiva
+- **SignalR Client** - Comunicação em tempo real
+- **HTTP Client** - APIs REST modernas
 - **JWT Authentication** - Autenticação segura
-- **Serilog** - Logging estruturado
-- **Docker** - Containerização
-- **BCrypt** - Hash seguro de senhas
+- **JSON Serialization** - Troca de dados eficiente
 
 ### **Funcionalidades**
-- ✅ **Autenticação JWT** - Tokens seguros
-- ✅ **Comunicação em tempo real** - SignalR WebSockets
-- ✅ **Controle remoto** - Mouse e teclado
-- ✅ **Compartilhamento de tela** - Transmissão em tempo real
-- ✅ **Qualidade adaptativa** - Ajuste automático de qualidade
-- ✅ **Compressão de dados** - Otimização de banda
-- ✅ **Múltiplas sessões** - Várias conexões simultâneas
-- ✅ **Logs estruturados** - Monitoramento completo
-- ✅ **Health checks** - Monitoramento de saúde
-- ✅ **API REST** - Interface programática
-- ✅ **Swagger/OpenAPI** - Documentação automática
+- ✅ **Interface Moderna** - Design responsivo e intuitivo
+- ✅ **Conexão com OnliDesk** - Integração com servidor (172.20.120.40:7070)
+- ✅ **Autenticação JWT** - Login seguro no servidor
+- ✅ **Validação de IDs** - Formato XXX XXX XXX
+- ✅ **Conexões Recentes** - Histórico de acessos
+- ✅ **Configurações Avançadas** - Personalização completa
+- ✅ **Português Brasileiro** - Acentuação correta
+- ✅ **Feedback Visual** - Status em tempo real
+- ✅ **Modo Offline** - Funciona sem servidor
+- ✅ **Executável Único** - Não precisa instalar
 
 ### **Segurança**
 - 🔐 **Autenticação JWT** com expiração

@@ -1,0 +1,121 @@
+﻿name: 🚀 Build e Release OnliDesk Cliente
+
+on:
+  push:
+    branches: [ master, main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build:
+    name: 🔨 Build Windows
+    runs-on: windows-latest
+    
+    steps:
+    - name: 📥 Checkout código
+      uses: actions/checkout@v4
+      
+    - name: 🔧 Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: 📦 Restaurar dependências
+      run: dotnet restore
+      
+    - name: 🔨 Build Debug
+      run: dotnet build --configuration Debug --no-restore
+      
+    - name: 🔨 Build Release
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: 🧪 Executar testes
+      run: dotnet test --no-build --verbosity normal --configuration Release
+      continue-on-error: true
+      
+    - name: 📦 Publicar executável
+      run: |
+        dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
+        
+    - name: 📋 Informações do build
+      run: |
+        echo "📊 Build Information:"
+        echo "🔹 Commit: ${{ github.sha }}"
+        echo "🔹 Branch: ${{ github.ref_name }}"
+        echo "🔹 Executável gerado:"
+        dir ./publish
+        
+    - name: 📤 Upload executável como artefato
+      uses: actions/upload-artifact@v4
+      with:
+        name: OnliDesk-Cliente-${{ github.sha }}
+        path: |
+          ./publish/OliAcessoRemoto.exe
+          ./publish/OliAcessoRemoto.pdb
+        retention-days: 30
+
+  release:
+    name: 🎉 Criar Release
+    needs: build
+    runs-on: windows-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - name: 📥 Checkout código
+      uses: actions/checkout@v4
+      
+    - name: 🔧 Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: 📦 Publicar executável para release
+      run: |
+        dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./release
+        
+    - name: 📝 Gerar changelog
+      id: changelog
+      run: |
+        echo "## 🚀 OnliDesk Cliente ${{ github.ref_name }}" > CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        echo "### ✨ Novidades:" >> CHANGELOG.md
+        echo "- 🔧 Correção completa da acentuação em português brasileiro" >> CHANGELOG.md
+        echo "- 🌐 Conexão com servidor OnliDesk (172.20.120.40:7070)" >> CHANGELOG.md
+        echo "- 🔐 Autenticação JWT implementada" >> CHANGELOG.md
+        echo "- 📱 Interface moderna e responsiva" >> CHANGELOG.md
+        echo "- ⚙️ Sistema de configurações completo" >> CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        echo "### 🔧 Melhorias:" >> CHANGELOG.md
+        echo "- ✅ Validação de IDs aprimorada" >> CHANGELOG.md
+        echo "- 📋 Gestão de conexões recentes" >> CHANGELOG.md
+        echo "- 🎨 Design moderno com tema azul" >> CHANGELOG.md
+        echo "- 🔄 Feedback visual em tempo real" >> CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        echo "### 📋 Requisitos:" >> CHANGELOG.md
+        echo "- 🖥️ Windows 10/11 (x64)" >> CHANGELOG.md
+        echo "- 🌐 Conexão com internet" >> CHANGELOG.md
+        echo "- 🔌 Acesso ao servidor OnliDesk" >> CHANGELOG.md
+        echo "" >> CHANGELOG.md
+        echo "### 📥 Instalação:" >> CHANGELOG.md
+        echo "1. Baixe o arquivo \`OnliDesk-Cliente.exe\`" >> CHANGELOG.md
+        echo "2. Execute o arquivo (não precisa instalar)" >> CHANGELOG.md
+        echo "3. Configure o servidor se necessário" >> CHANGELOG.md
+        echo "4. Comece a usar!" >> CHANGELOG.md
+        
+    - name: 🎉 Criar Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: OnliDesk Cliente ${{ github.ref_name }}
+        body_path: CHANGELOG.md
+        files: |
+          ./release/OliAcessoRemoto.exe
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: 📢 Notificar sucesso
+      run: |
+        echo "🎉 Release ${{ github.ref_name }} criada com sucesso!"
+        echo "📥 Download disponível em: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}"
