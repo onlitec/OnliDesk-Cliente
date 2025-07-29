@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+    <AssemblyTitle>OnliDesk</AssemblyTitle>
+    <AssemblyDescription>OnliDesk - Acesso Remoto Seguro</AssemblyDescription>
+    <AssemblyCompany>OnliTec</AssemblyCompany>
+    <AssemblyProduct>OnliDesk</AssemblyProduct>
+    <AssemblyCopyright>© 2024 OnliTec</AssemblyCopyright>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+  </PropertyGroup>
+
+</Project>

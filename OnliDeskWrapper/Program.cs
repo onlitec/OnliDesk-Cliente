@@ -132,13 +132,50 @@ namespace OnliDeskWrapper
         static bool LaunchOnliDesk()
         {
             string currentDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            
-            // Opção 1: Tentar via dotnet run (mais confiável)
+
+            // Mostrar mensagem de debug
+            MessageBox.Show($"Tentando executar OnliDesk...\nDiretório: {currentDir}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Opção 1: Tentar executável direto (mais simples)
+            string exePath = Path.Combine(currentDir, "OliAcessoRemoto.exe");
+            if (File.Exists(exePath))
+            {
+                try
+                {
+                    MessageBox.Show($"Encontrado: {exePath}\nTentando executar...", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    var process = Process.Start(new ProcessStartInfo
+                    {
+                        FileName = exePath,
+                        WorkingDirectory = currentDir,
+                        UseShellExecute = true,
+                        WindowStyle = ProcessWindowStyle.Normal
+                    });
+
+                    if (process != null)
+                    {
+                        MessageBox.Show("OnliDesk executado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao executar {exePath}:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Arquivo não encontrado: {exePath}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Opção 2: Tentar via dotnet run
             string csprojPath = Path.Combine(currentDir, "OliAcessoRemoto.csproj");
             if (File.Exists(csprojPath))
             {
                 try
                 {
+                    MessageBox.Show($"Tentando via dotnet run: {csprojPath}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     var process = new Process
                     {
                         StartInfo = new ProcessStartInfo
@@ -147,65 +184,33 @@ namespace OnliDeskWrapper
                             Arguments = $"run --project \"{csprojPath}\"",
                             WorkingDirectory = currentDir,
                             UseShellExecute = false,
-                            CreateNoWindow = true
+                            CreateNoWindow = false,
+                            WindowStyle = ProcessWindowStyle.Normal
                         }
                     };
-                    
+
                     process.Start();
-                    
+
                     // Aguardar um pouco para ver se o processo inicia
-                    Thread.Sleep(2000);
-                    
+                    Thread.Sleep(3000);
+
                     if (!process.HasExited)
                     {
-                        return true; // Processo ainda rodando, provavelmente funcionou
+                        MessageBox.Show("OnliDesk iniciado via dotnet run!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Processo dotnet terminou com código: {process.ExitCode}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // Falhou, tentar próxima opção
+                    MessageBox.Show($"Erro ao executar via dotnet run:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
-            // Opção 2: Tentar executável direto
-            string exePath = Path.Combine(currentDir, "OliAcessoRemoto.exe");
-            if (File.Exists(exePath))
-            {
-                try
-                {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = exePath,
-                        WorkingDirectory = currentDir,
-                        UseShellExecute = true
-                    });
-                    return true;
-                }
-                catch
-                {
-                    // Falhou
-                }
-            }
-            
-            // Opção 3: Tentar executável na pasta OnliDesk-Executavel
-            string selfContainedPath = Path.Combine(currentDir, "OnliDesk-Executavel", "OliAcessoRemoto.exe");
-            if (File.Exists(selfContainedPath))
-            {
-                try
-                {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = selfContainedPath,
-                        UseShellExecute = true
-                    });
-                    return true;
-                }
-                catch
-                {
-                    // Falhou
-                }
-            }
-            
+
+            MessageBox.Show("Todas as opções falharam!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
     }
