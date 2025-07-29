@@ -11,7 +11,7 @@ public partial class App : System.Windows.Application
 {
     protected override void OnStartup(StartupEventArgs e)
     {
-        // Capturar exceÁıes n„o tratadas
+        // Capturar exce√ß√µes n√£o tratadas
         this.DispatcherUnhandledException += App_DispatcherUnhandledException;
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
@@ -20,15 +20,15 @@ public partial class App : System.Windows.Application
 
     private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
     {
-        System.Windows.MessageBox.Show($"Erro n„o tratado: {e.Exception.Message}\n\nDetalhes: {e.Exception}",
-                       "Erro da AplicaÁ„o", MessageBoxButton.OK, MessageBoxImage.Error);
+        System.Windows.MessageBox.Show($"Erro n√£o tratado: {e.Exception.Message}\n\nDetalhes: {e.Exception}",
+                       "Erro da Aplica√ß√£o", MessageBoxButton.OK, MessageBoxImage.Error);
         e.Handled = true;
     }
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
         var ex = e.ExceptionObject as Exception;
-        System.Windows.MessageBox.Show($"Erro crÌtico: {ex?.Message}\n\nDetalhes: {ex}",
-                       "Erro CrÌtico", MessageBoxButton.OK, MessageBoxImage.Error);
+        System.Windows.MessageBox.Show($"Erro cr√≠tico: {ex?.Message}\n\nDetalhes: {ex}",
+                       "Erro Cr√≠tico", MessageBoxButton.OK, MessageBoxImage.Error);
     }
 }
