@@ -32,20 +32,37 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         try
         {
-            // Inicializar servi�o de API com IP do servidor OnliDesk
+            InitializeComponent();
+
+            // Inicializar serviço de API com IP do servidor OnliDesk
             _serverApi = new ServerApiService("172.20.120.40", 7070);
 
-            InitializeComponent();
             InitializeData();
             UpdateUI();
 
-            // Inicializar conexão com servidor
-            _ = InitializeServerConnectionAsync();
+            // Aguardar janela carregar antes de inicializar servidor
+            this.Loaded += MainWindow_Loaded;
         }
         catch (Exception ex)
         {
             System.Windows.MessageBox.Show($"Erro ao inicializar a aplicação: {ex.Message}\n\nDetalhes: {ex}",
                           "Erro de Inicialização", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            // Mostrar mensagem de teste para verificar se WPF está funcionando
+            FooterStatusText.Text = "OnliDesk carregado com sucesso!";
+
+            // Inicializar conexão com servidor após janela carregar (comentado para teste)
+            // await InitializeServerConnectionAsync();
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Erro no MainWindow_Loaded: {ex.Message}", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
@@ -70,14 +87,16 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         try
         {
             // Verificar se o servidor está online
-            FooterStatusText.Text = "Verificando conexão com servidor OnliDesk...";
+            Dispatcher.Invoke(() => FooterStatusText.Text = "Verificando conexão com servidor OnliDesk...");
 
-            bool serverOnline = await _serverApi.CheckServerHealthAsync();
+            bool serverOnline = await _serverApi!.CheckServerHealthAsync();
             if (!serverOnline)
             {
-                FooterStatusText.Text = "Servidor OnliDesk offline - Modo offline";
-                System.Windows.MessageBox.Show("Não foi possível conectar ao servidor OnliDesk (172.20.120.40:7070).\nVerifique se o servidor está rodando e tente novamente.\n\nO aplicativo funcionará em modo offline.",
-                              "Servidor Offline", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Dispatcher.Invoke(() => {
+                    FooterStatusText.Text = "Servidor OnliDesk offline - Modo offline";
+                    System.Windows.MessageBox.Show("Não foi possível conectar ao servidor OnliDesk (172.20.120.40:7070).\nVerifique se o servidor está rodando e tente novamente.\n\nO aplicativo funcionará em modo offline.",
+                                  "Servidor Offline", MessageBoxButton.OK, MessageBoxImage.Warning);
+                });
                 return;
             }
 

@@ -1,0 +1,97 @@
+﻿╔══════════════════════════════════════════════════════════════════════════════╗
+║                                  OnliDesk                                   ║
+║                            Acesso Remoto Seguro                             ║
+║                              © 2024 OnliTec                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+🚀 COMO USAR O ONLIDESK
+═══════════════════════════════════════════════════════════════════════════════
+
+📋 ARQUIVOS INCLUÍDOS:
+• OnliDesk.bat - Launcher inteligente (EXECUTE ESTE ARQUIVO)
+• OliAcessoRemoto.exe - Aplicação principal OnliDesk
+• LEIA-ME.txt - Este arquivo de instruções
+
+🎯 INSTALAÇÃO RÁPIDA:
+1. Extraia todos os arquivos para uma pasta
+2. Execute OnliDesk.bat (clique duplo)
+3. O launcher verificará e instalará automaticamente o .NET se necessário
+4. Após instalação, o OnliDesk será iniciado automaticamente
+
+✨ FUNCIONALIDADES DO LAUNCHER:
+• ✅ Verificação automática do .NET 8 Desktop Runtime
+• ✅ Download e instalação automática do .NET
+• ✅ Interface amigável com instruções claras
+• ✅ Múltiplas opções de instalação (automática/manual)
+• ✅ Tratamento robusto de erros
+• ✅ Não requer conhecimento técnico
+
+🔧 REQUISITOS DO SISTEMA:
+• Windows 10/11 (64-bit)
+• Conexão com internet (para download do .NET se necessário)
+• ~100MB de espaço livre (para instalação do .NET)
+
+🌐 FUNCIONALIDADES DO ONLIDESK:
+• ✅ Interface moderna e intuitiva
+• ✅ Conexão segura com servidor OnliDesk
+• ✅ Autenticação JWT
+• ✅ Validação de IDs no formato XXX XXX XXX
+• ✅ Sistema de configurações avançadas
+• ✅ Gestão de conexões recentes
+• ✅ Modo offline funcional
+• ✅ Português brasileiro com acentuação correta
+
+📡 CONFIGURAÇÃO DE REDE:
+• Servidor padrão: 172.20.120.40:7070
+• Protocolo: HTTP/HTTPS
+• Porta: 7070
+• Configurável via interface
+
+🆘 SOLUÇÃO DE PROBLEMAS:
+
+❓ "OnliDesk não abre"
+   → Execute OnliDesk.bat como administrador
+   → Verifique se o antivírus não está bloqueando
+   → Certifique-se de que ambos os arquivos estão na mesma pasta
+
+❓ "Erro de .NET"
+   → Execute OnliDesk.bat novamente
+   → Escolha instalação manual se automática falhar
+   → Reinicie o computador após instalar .NET
+
+❓ "Não conecta ao servidor"
+   → Verifique conexão com internet
+   → Confirme se o servidor 172.20.120.40:7070 está acessível
+   → Use modo offline se necessário
+
+❓ "Antivírus bloqueia"
+   → Adicione exceção para a pasta do OnliDesk
+   → Marque arquivos como confiáveis
+   → Use Windows Defender se possível
+
+🔗 LINKS ÚTEIS:
+• Download .NET 8: https://dotnet.microsoft.com/download/dotnet/8.0
+• Suporte OnliTec: [contato da empresa]
+• Documentação: [link da documentação]
+
+📞 SUPORTE TÉCNICO:
+• Email: suporte@onlitec.com
+• Telefone: [número de suporte]
+• Horário: Segunda a Sexta, 8h às 18h
+
+🔄 ATUALIZAÇÕES:
+• Versão atual: 1.0.0
+• Data: 29/07/2024
+• Verificar atualizações: [link de atualizações]
+
+💡 DICAS:
+• Crie um atalho do OnliDesk.bat na área de trabalho
+• Mantenha ambos os arquivos sempre na mesma pasta
+• Execute sempre OnliDesk.bat, não o OliAcessoRemoto.exe diretamente
+• Para desinstalar, simplesmente delete a pasta
+
+🎉 OBRIGADO POR USAR O ONLIDESK!
+
+═══════════════════════════════════════════════════════════════════════════════
+OnliDesk v1.0.0 - Desenvolvido por OnliTec © 2024
+═══════════════════════════════════════════════════════════════════════════════

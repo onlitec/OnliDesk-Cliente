@@ -28,4 +28,8 @@
         <Resource Include="Resources\icon.png" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ClCompile Include="OnliDeskLauncher.cpp" />
+    </ItemGroup>
+
 </Project>
