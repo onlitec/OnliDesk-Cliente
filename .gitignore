@@ -1,5 +1,13 @@
 bin/
 obj/
+dist/
+dist-*/
+OnliDesk-Executavel/
+*.exe
+*.dll
+*.pdb
+*.ipch
+.vs/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
